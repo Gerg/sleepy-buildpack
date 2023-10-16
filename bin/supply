@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+deps_dir=$3
+deps_idx=$4
+
+echo "Running Sleepy Buildpack 😴"
+profile_d_path="$deps_dir/$deps_idx/profile.d"
+script_path="$profile_d_path/sleepy.sh"
+mkdir -p "$profile_d_path"
+echo 'echo "Sleeping 😴" && sleep "${BP_SLEEP_TIME:-300}" && echo "Done Sleeping ☕️"' > "$script_path"
+chmod +x "$script_path"
